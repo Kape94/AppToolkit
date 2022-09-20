@@ -27,7 +27,7 @@ void GlfwContext::Init(
 
 bool GlfwContext::ShouldClose() const
 {
-  return glfwWindowShouldClose(window);
+  return glfwWindowShouldClose(this->window);
 }
 
 //-----------------------------------------------------------------------------
@@ -41,15 +41,22 @@ void GlfwContext::PoolEvents()
 
 void GlfwContext::Swap()
 {
-  glfwSwapBuffers(window);
+  glfwSwapBuffers(this->window);
 }
 
 //-----------------------------------------------------------------------------
 
 void GlfwContext::Cleanup()
 {
-  glfwDestroyWindow(window);
+  glfwDestroyWindow(this->window);
   glfwTerminate();
+}
+
+//-----------------------------------------------------------------------------
+
+GLFWwindow* GlfwContext::GetWindow()
+{
+  return this->window;
 }
 
 //-----------------------------------------------------------------------------

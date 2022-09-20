@@ -22,6 +22,8 @@ class GlfwContext {
 
     void Cleanup();
 
+    GLFWwindow* GetWindow();
+
   private:
 
     GLFWwindow* window = nullptr;
