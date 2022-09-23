@@ -3,7 +3,7 @@
 
 #include <string>
 
-class GLFWwindow;
+#include <GLFW/glfw3.h>
 
 class GlfwContext {
   public:

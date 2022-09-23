@@ -1,7 +1,5 @@
 #include "GlfwContext.h"
 
-#include <GLFW/glfw3.h>
-
 //-----------------------------------------------------------------------------
 
 void GlfwContext::Init(
