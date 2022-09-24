@@ -3,6 +3,9 @@
 
 class IuiPresenter {
   public:
+
+    virtual ~IuiPresenter() = default;
+
     virtual void Present() = 0;
 };
 

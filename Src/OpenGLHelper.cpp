@@ -12,7 +12,7 @@ void OpenGLHelper::Init(
   glewExperimental = GL_TRUE;
   glewInit();
 
-  glViewport(200, 0, screenWidth, screenHeight);
+  glViewport(0, 0, screenWidth, screenHeight);
 }
 
 //-----------------------------------------------------------------------------
