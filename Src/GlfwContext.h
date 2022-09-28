@@ -16,7 +16,7 @@ class GlfwContext {
 
     bool ShouldClose() const;
 
-    void PoolEvents();
+    void PollEvents();
 
     void Swap();
 

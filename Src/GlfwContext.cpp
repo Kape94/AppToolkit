@@ -30,7 +30,7 @@ bool GlfwContext::ShouldClose() const
 
 //-----------------------------------------------------------------------------
 
-void GlfwContext::PoolEvents()
+void GlfwContext::PollEvents()
 {
   glfwPollEvents();
 }

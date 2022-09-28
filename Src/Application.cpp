@@ -2,6 +2,8 @@
 
 #include "OpenGLHelper.h"
 
+#include "InputDefs.h"
+
 #include "imgui.h"
 class UiPresenterTest : public IuiPresenter {
 public:
@@ -41,9 +43,14 @@ void Application::Run()
 
     uiContext.PresentUI();
 
+    if (inputStatus.IsHold(Key::ESC)) {
+      break;
+    }
+
     OpenGLHelper::Flush();
     windowContext.Swap();
-    windowContext.PoolEvents();
+    windowContext.PollEvents();
+    inputStatus.Poll(windowContext.GetWindow());
   }
 
   uiContext.Cleanup();
