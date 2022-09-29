@@ -4,57 +4,194 @@
 
 #include "InputDefs.h"
 
-#include "imgui.h"
-class UiPresenterTest : public IuiPresenter {
-public:
-
-  virtual ~UiPresenterTest() = default;
-
-  void Present() override {
-    ImGui::SetNextWindowSize(ImVec2(200.0f, 100.0f));
-
-    ImGui::Begin("Hello world!", 0,
-      ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize
-    );
-    ImGui::Text("Test window \\o/");
-    ImGui::End();
-  }
-};
-
 //-----------------------------------------------------------------------------
 
 Application::Application()
 {
+  InitializeContext();
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::InitializeContext()
+{
   windowContext.Init(1280, 960, "Test");
   OpenGLHelper::Init(1280, 960);
 
-  uiPresenter = std::make_unique<UiPresenterTest>();
-  
   uiContext.Init(windowContext.GetWindow());
-  uiContext.SetPresenter(uiPresenter.get());
 }
 
 //-----------------------------------------------------------------------------
 
 void Application::Run()
 {
-  while (!windowContext.ShouldClose()) {
-    OpenGLHelper::Clear(0.0f, 0.0f, 0.0f);
+  InitializeApp();
 
-    uiContext.PresentUI();
-
-    if (inputStatus.IsHold(Key::ESC)) {
-      break;
-    }
-
-    OpenGLHelper::Flush();
-    windowContext.Swap();
-    windowContext.PollEvents();
-    inputStatus.Poll(windowContext.GetWindow());
+  while (ShouldKeepRunning()) {
+    ProcessFrame();
   }
 
+  Cleanup();
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::InitializeApp()
+{
+  if (appInitializer != nullptr) {
+    appInitializer->Initialize();
+  }
+}
+
+//-----------------------------------------------------------------------------
+
+bool Application::ShouldKeepRunning() const
+{
+  return isRunning && !windowContext.ShouldClose();
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::ProcessFrame()
+{
+  BeginFrame();
+
+  PresentUI();
+  Update();
+  Render();
+
+  EndFrame();
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::BeginFrame()
+{
+  OpenGLHelper::Clear(0.0f, 0.0f, 0.0f);
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::PresentUI()
+{
+  uiContext.PresentUI();
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::Update()
+{
+  if (appUpdater != nullptr) {
+    appUpdater->Update(*this);
+  }
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::Render()
+{
+  if (appRenderer != nullptr) {
+    appRenderer->Render();
+  }
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::EndFrame()
+{
+  OpenGLHelper::Flush();
+  windowContext.Swap();
+  windowContext.PollEvents();
+  inputStatus.Poll(windowContext.GetWindow());
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::Cleanup()
+{
   uiContext.Cleanup();
   windowContext.Cleanup();
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::SetUiPresenter(
+  IuiPresenter* uiPresenter
+)
+{
+  uiContext.SetPresenter(uiPresenter);
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::SetAppInitializer(IAppInitializer* _appInitializer)
+{
+  appInitializer = _appInitializer;
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::SetAppRenderer(IAppRenderer* _appRenderer)
+{
+  appRenderer = _appRenderer;
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::SetAppUpdater(IAppUpdater* _appUpdater)
+{
+  appUpdater = _appUpdater;
+}
+
+//-----------------------------------------------------------------------------
+// IAppUtils
+//-----------------------------------------------------------------------------
+
+bool Application::IsPressed(const Key key)
+{
+  return inputStatus.IsPressed(key);
+}
+
+//-----------------------------------------------------------------------------
+
+bool Application::IsPressed(const MouseButton mouseButton)
+{
+  return inputStatus.IsPressed(mouseButton);
+}
+
+//-----------------------------------------------------------------------------
+
+bool Application::IsReleased(const Key key)
+{
+  return inputStatus.IsReleased(key);
+}
+
+//-----------------------------------------------------------------------------
+
+bool Application::IsReleased(const MouseButton mouseButton)
+{
+  return inputStatus.IsReleased(mouseButton);
+}
+
+//-----------------------------------------------------------------------------
+
+bool Application::IsHold(const Key key)
+{
+  return inputStatus.IsHold(key);
+}
+
+//-----------------------------------------------------------------------------
+
+bool Application::IsHold(const MouseButton mouseButton)
+{
+  return inputStatus.IsHold(mouseButton);
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::Exit()
+{
+  isRunning = false;
 }
 
 //-----------------------------------------------------------------------------
