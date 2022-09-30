@@ -22,7 +22,10 @@ class Application :
   private:
 
     // -----------------------IApp-----------------------------------
-    void Initialize() override;
+    void Initialize(
+      const WindowProperties& windowProperties = WindowProperties()
+    ) override;
+
     void Run() override;
 
     void SetUiPresenter(IuiPresenter* uiPresenter) override;
@@ -47,7 +50,9 @@ class Application :
     void SetMousePos(const glm::vec2& pos) override;
     // -----------------------IAppUtils------------------------------
 
-    void InitializeContext();
+    void InitializeContext(
+      const WindowProperties& windowProperties
+    );
 
     void InitializeApp();
     bool ShouldKeepRunning() const;

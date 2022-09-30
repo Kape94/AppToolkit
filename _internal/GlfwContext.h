@@ -2,6 +2,7 @@
 #define _GLFW_CONTEXT_H
 
 #include "AppToolkitDefs.h"
+#include "WindowProperties.h"
 
 #include <string>
 
@@ -14,9 +15,7 @@ class GlfwContext {
   public:
 
     void Init(
-      const unsigned _screenWidth,
-      const unsigned _screenHeight,
-      const std::string& windowTitle
+      const WindowProperties& windowProperties
     );
 
     bool ShouldClose() const;

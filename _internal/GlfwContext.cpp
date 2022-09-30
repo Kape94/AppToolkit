@@ -7,16 +7,21 @@ _USING_APP_TOOLKIT_NAMESPACE
 //-----------------------------------------------------------------------------
 
 void GlfwContext::Init(
-  const unsigned _screenWidth, 
-  const unsigned _screenHeight, 
-  const std::string& windowTitle
+  const WindowProperties& windowProperties
 )
 {
   glfwInit();
 
+  const bool isFullscreen = windowProperties.fullscreen;
+  auto monitor = isFullscreen ? glfwGetPrimaryMonitor() : nullptr;
   this->window = glfwCreateWindow(
-    _screenWidth, _screenHeight, windowTitle.c_str(), nullptr, nullptr
+    windowProperties.width, 
+    windowProperties.height, 
+    windowProperties.name.c_str(), 
+    monitor, 
+    nullptr
   );
+
   glfwMakeContextCurrent(this->window);
 }
 

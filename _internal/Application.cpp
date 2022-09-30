@@ -10,18 +10,22 @@ _USING_APP_TOOLKIT_NAMESPACE
 
 //-----------------------------------------------------------------------------
 
-void Application::Initialize()
+void Application::Initialize(
+  const WindowProperties& windowProperties
+)
 {
-  InitializeContext();
+  InitializeContext(windowProperties);
   InitializeApp();
 }
 
 //-----------------------------------------------------------------------------
 
-void Application::InitializeContext()
+void Application::InitializeContext(
+  const WindowProperties& windowProperties
+)
 {
-  windowContext.Init(1280, 960, "Test");
-  OpenGLHelper::Init(1280, 960);
+  windowContext.Init(windowProperties);
+  OpenGLHelper::Init(windowProperties.width, windowProperties.height);
 
   uiContext.Init(windowContext.GetWindow());
 }

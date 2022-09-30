@@ -7,6 +7,7 @@
 #include "IAppUpdater.h"
 #include "IAppUtils.h"
 #include "IuiPresenter.h"
+#include "WindowProperties.h"
 
 _BEGIN_APP_TOOLKIT_NAMESPACE
 
@@ -14,7 +15,10 @@ class IApp {
   public:
     virtual ~IApp() = default;
 
-    virtual void Initialize() = 0;
+    virtual void Initialize(
+      const WindowProperties& windowProperties = WindowProperties()
+    ) = 0;
+
     virtual void Run() = 0;
 
     virtual void SetUiPresenter(IuiPresenter* uiPresenter) = 0;
