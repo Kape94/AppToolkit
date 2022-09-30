@@ -1,13 +1,14 @@
 #ifndef _APPLICATION_H
 #define _APPLICATION_H
 
-#include "GlfwContext.h"
 #include "IAppInitializer.h"
 #include "IAppRenderer.h"
 #include "IAppUpdater.h"
 #include "IAppUtils.h"
 #include "InputStatus.h"
 #include "UiContext.h"
+
+#include "GlfwContext.h"
 
 class Application : 
   public IAppUtils // implements
