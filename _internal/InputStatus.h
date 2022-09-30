@@ -5,7 +5,10 @@
 
 #include <GLFW/glfw3.h>
 
+#include "AppToolkitDefs.h"
 #include "InputDefs.h"
+
+_BEGIN_APP_TOOLKIT_NAMESPACE
 
 class InputStatus {
   public:
@@ -31,5 +34,7 @@ class InputStatus {
     std::map<MouseButton, bool> previousMouseButtonState;
     std::map<MouseButton, bool> currentMouseButtonState;
 };
+
+_END_APP_TOOLKIT_NAMESPACE
 
 #endif

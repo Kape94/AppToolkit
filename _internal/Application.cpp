@@ -1,14 +1,19 @@
-#include "Application.h"
+#include "_internal/Application.h"
 
 #include "_internal/OpenGLHelper.h"
 
-#include "_internal/InputDefs.h"
+#include "InputDefs.h"
 
 //-----------------------------------------------------------------------------
 
-Application::Application()
+_USING_APP_TOOLKIT_NAMESPACE
+
+//-----------------------------------------------------------------------------
+
+void Application::Initialize()
 {
   InitializeContext();
+  InitializeApp();
 }
 
 //-----------------------------------------------------------------------------
@@ -23,24 +28,22 @@ void Application::InitializeContext()
 
 //-----------------------------------------------------------------------------
 
-void Application::Run()
-{
-  InitializeApp();
-
-  while (ShouldKeepRunning()) {
-    ProcessFrame();
-  }
-
-  Cleanup();
-}
-
-//-----------------------------------------------------------------------------
-
 void Application::InitializeApp()
 {
   if (appInitializer != nullptr) {
     appInitializer->Initialize();
   }
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::Run()
+{
+  while (ShouldKeepRunning()) {
+    ProcessFrame();
+  }
+
+  Cleanup();
 }
 
 //-----------------------------------------------------------------------------

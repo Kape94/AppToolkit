@@ -1,6 +1,10 @@
-#include "OpenGLHelper.h"
+#include "_internal/OpenGLHelper.h"
 
 #include <gl/glew.h>
+
+//-----------------------------------------------------------------------------
+
+_USING_APP_TOOLKIT_NAMESPACE
 
 //-----------------------------------------------------------------------------
 

@@ -3,7 +3,10 @@
 
 #include <GLFW/glfw3.h>
 
+#include "AppToolkitDefs.h"
 #include "IuiPresenter.h"
+
+_BEGIN_APP_TOOLKIT_NAMESPACE
 
 class UiContext {
   public:
@@ -23,5 +26,7 @@ class UiContext {
 
     IuiPresenter* uiPresenter = nullptr;
 };
+
+_END_APP_TOOLKIT_NAMESPACE
 
 #endif

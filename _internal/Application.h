@@ -1,31 +1,35 @@
 #ifndef _APPLICATION_H
 #define _APPLICATION_H
 
-#include "IAppInitializer.h"
-#include "IAppRenderer.h"
-#include "IAppUpdater.h"
-#include "IAppUtils.h"
+#include "AppToolkitDefs.h"
+#include "IApp.h"
 
 #include "_internal/InputStatus.h"
 #include "_internal/UiContext.h"
 
 #include "_internal/GlfwContext.h"
 
+_BEGIN_APP_TOOLKIT_NAMESPACE
+
 class Application : 
-  public IAppUtils // implements
+  /*implements*/ public IAppUtils,
+  /*implements*/ public IApp
 {
   public:
 
-    Application();
-
-    void Run();
-
-    void SetUiPresenter(IuiPresenter* uiPresenter);
-    void SetAppInitializer(IAppInitializer* _appInitializer);
-    void SetAppRenderer(IAppRenderer* _appRenderer);
-    void SetAppUpdater(IAppUpdater* _appUpdater);
+    Application() = default;
 
   private:
+
+    // -----------------------IApp-----------------------------------
+    void Initialize() override;
+    void Run() override;
+
+    void SetUiPresenter(IuiPresenter* uiPresenter) override;
+    void SetAppInitializer(IAppInitializer* _appInitializer) override;
+    void SetAppRenderer(IAppRenderer* _appRenderer) override;
+    void SetAppUpdater(IAppUpdater* _appUpdater) override;
+    // -----------------------IApp-----------------------------------
 
     // -----------------------IAppUtils------------------------------
     bool IsPressed(const Key key) override;
@@ -66,5 +70,7 @@ class Application :
 
     bool isRunning = true;
 };
+
+_END_APP_TOOLKIT_NAMESPACE
 
 #endif

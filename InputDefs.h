@@ -1,6 +1,10 @@
 #ifndef _INPUT_DEFS_H
 #define _INPUT_DEFS_H
 
+#include "AppToolkitDefs.h"
+
+_BEGIN_APP_TOOLKIT_NAMESPACE
+
 enum class Key {
   A,
   B,
@@ -51,5 +55,7 @@ enum class MouseButton {
   RIGHT,
   _LAST
 };
+
+_END_APP_TOOLKIT_NAMESPACE
 
 #endif

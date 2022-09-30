@@ -1,9 +1,12 @@
 #ifndef _I_APP_UTILS_H
 #define _I_APP_UTILS_H
 
-#include "_internal/InputDefs.h"
+#include "AppToolkitDefs.h"
+#include "InputDefs.h"
 
 #include <glm/vec2.hpp>
+
+_BEGIN_APP_TOOLKIT_NAMESPACE
 
 class IAppUtils {
   public:
@@ -23,5 +26,7 @@ class IAppUtils {
     virtual glm::vec2 GetMousePos() const = 0;
     virtual void SetMousePos(const glm::vec2& pos) = 0;
 };
+
+_END_APP_TOOLKIT_NAMESPACE
 
 #endif

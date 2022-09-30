@@ -1,6 +1,10 @@
 #ifndef _OPENGL_HELPER_H
 #define _OPENGL_HELPER_H
 
+#include "AppToolkitDefs.h"
+
+_BEGIN_APP_TOOLKIT_NAMESPACE
+
 namespace OpenGLHelper {
 
   void Init(
@@ -17,5 +21,7 @@ namespace OpenGLHelper {
   void Flush();
 
 }
+
+_END_APP_TOOLKIT_NAMESPACE
 
 #endif

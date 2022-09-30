@@ -1,10 +1,14 @@
 #ifndef _GLFW_CONTEXT_H
 #define _GLFW_CONTEXT_H
 
+#include "AppToolkitDefs.h"
+
 #include <string>
 
 #include <GLFW/glfw3.h>
 #include <glm/vec2.hpp>
+
+_BEGIN_APP_TOOLKIT_NAMESPACE
 
 class GlfwContext {
   public:
@@ -32,5 +36,7 @@ class GlfwContext {
 
     GLFWwindow* window = nullptr;
 };
+
+_END_APP_TOOLKIT_NAMESPACE
 
 #endif
