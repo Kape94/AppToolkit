@@ -6,10 +6,12 @@ find_package(glfw3 CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
 find_package(imgui CONFIG REQUIRED)
 
-file(GLOB SRC_FILES *.cpp)
+file(GLOB SRC_FILES *.cpp _internal/*.cpp)
 add_library(${PROJECT_NAME} ${SRC_FILES})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE GLEW::GLEW)
-target_link_libraries(${PROJECT_NAME} PRIVATE glfw)
-target_link_libraries(${PROJECT_NAME} PRIVATE glm::glm)
-target_link_libraries(${PROJECT_NAME} PRIVATE imgui::imgui)
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+target_link_libraries(${PROJECT_NAME} PUBLIC GLEW::GLEW)
+target_link_libraries(${PROJECT_NAME} PUBLIC glfw)
+target_link_libraries(${PROJECT_NAME} PUBLIC glm::glm)
+target_link_libraries(${PROJECT_NAME} PUBLIC imgui::imgui)
