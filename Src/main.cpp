@@ -12,6 +12,7 @@ public:
       ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize
     );
     ImGui::Text("Test window \\o/");
+    ImGui::Text("Mouse pos: %lf , %lf", mousePos.x, mousePos.y);
     ImGui::End();
   }
 
@@ -19,6 +20,11 @@ public:
     if (appUtils.IsHold(Key::ESC)) {
       appUtils.Exit();
     }
+    if (appUtils.IsPressed(Key::A)) {
+      appUtils.SetMousePos({ 500.0, 500.0 });
+    }
+
+    mousePos = appUtils.GetMousePos();
   }
 
   void Render() override {
@@ -28,6 +34,9 @@ public:
     glVertex3f(0.0f, 1.0f, 0.0f); glColor3f(0.0f, 0.0f, 1.0f);
     glEnd();
   }
+
+private:
+  glm::vec2 mousePos;
 };
 
 int main() {

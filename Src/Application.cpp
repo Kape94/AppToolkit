@@ -195,3 +195,17 @@ void Application::Exit()
 }
 
 //-----------------------------------------------------------------------------
+
+glm::vec2 Application::GetMousePos() const
+{
+  return windowContext.GetCursorPos();
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::SetMousePos(const glm::vec2& pos)
+{
+  windowContext.SetCursorPos(pos);
+}
+
+//-----------------------------------------------------------------------------

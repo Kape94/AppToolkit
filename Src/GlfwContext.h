@@ -4,6 +4,7 @@
 #include <string>
 
 #include <GLFW/glfw3.h>
+#include <glm/vec2.hpp>
 
 class GlfwContext {
   public:
@@ -23,6 +24,9 @@ class GlfwContext {
     void Cleanup();
 
     GLFWwindow* GetWindow();
+
+    glm::vec2 GetCursorPos() const;
+    void SetCursorPos(const glm::vec2& pos);
 
   private:
 

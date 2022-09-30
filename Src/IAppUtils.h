@@ -3,6 +3,8 @@
 
 #include "InputDefs.h"
 
+#include <glm/vec2.hpp>
+
 class IAppUtils {
   public:
     virtual ~IAppUtils() = default;
@@ -17,6 +19,9 @@ class IAppUtils {
     virtual bool IsHold(const MouseButton mouseButton) = 0;
 
     virtual void Exit() = 0;
+
+    virtual glm::vec2 GetMousePos() const = 0;
+    virtual void SetMousePos(const glm::vec2& pos) = 0;
 };
 
 #endif

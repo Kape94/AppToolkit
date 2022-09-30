@@ -37,6 +37,9 @@ class Application :
     bool IsHold(const MouseButton mouseButton) override;
 
     void Exit() override;
+
+    glm::vec2 GetMousePos() const override;
+    void SetMousePos(const glm::vec2& pos) override;
     // -----------------------IAppUtils------------------------------
 
     void InitializeContext();

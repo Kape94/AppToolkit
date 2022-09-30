@@ -53,3 +53,19 @@ GLFWwindow* GlfwContext::GetWindow()
 }
 
 //-----------------------------------------------------------------------------
+
+glm::vec2 GlfwContext::GetCursorPos() const
+{
+  double xPos, yPos;
+  glfwGetCursorPos(window, &xPos, &yPos);
+  return { xPos, yPos };
+}
+
+//-----------------------------------------------------------------------------
+
+void GlfwContext::SetCursorPos(const glm::vec2& pos)
+{
+  glfwSetCursorPos(window, pos.x, pos.y);
+}
+
+//-----------------------------------------------------------------------------
