@@ -5,10 +5,11 @@
 #include "IAppRenderer.h"
 #include "IAppUpdater.h"
 #include "IAppUtils.h"
-#include "InputStatus.h"
-#include "UiContext.h"
 
-#include "GlfwContext.h"
+#include "_internal/InputStatus.h"
+#include "_internal/UiContext.h"
+
+#include "_internal/GlfwContext.h"
 
 class Application : 
   public IAppUtils // implements

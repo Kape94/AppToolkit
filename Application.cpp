@@ -1,8 +1,8 @@
 #include "Application.h"
 
-#include "OpenGLHelper.h"
+#include "_internal/OpenGLHelper.h"
 
-#include "InputDefs.h"
+#include "_internal/InputDefs.h"
 
 //-----------------------------------------------------------------------------
 

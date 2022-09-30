@@ -1,7 +1,7 @@
 #ifndef _I_APP_UTILS_H
 #define _I_APP_UTILS_H
 
-#include "InputDefs.h"
+#include "_internal/InputDefs.h"
 
 #include <glm/vec2.hpp>
 
