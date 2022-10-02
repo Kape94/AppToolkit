@@ -10,19 +10,28 @@ _USING_APP_TOOLKIT_NAMESPACE
 
 //-----------------------------------------------------------------------------
 
-void Application::Initialize(
-  const WindowProperties& windowProperties
-)
+void Application::Run()
 {
-  InitializeContext(windowProperties);
+  Initialize();
+
+  while (ShouldKeepRunning()) {
+    ProcessFrame();
+  }
+
+  Cleanup();
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::Initialize()
+{
+  InitializeContext();
   InitializeApp();
 }
 
 //-----------------------------------------------------------------------------
 
-void Application::InitializeContext(
-  const WindowProperties& windowProperties
-)
+void Application::InitializeContext()
 {
   windowContext.Init(windowProperties);
   OpenGLHelper::Init(windowProperties.width, windowProperties.height);
@@ -37,17 +46,6 @@ void Application::InitializeApp()
   if (appInitializer != nullptr) {
     appInitializer->Initialize();
   }
-}
-
-//-----------------------------------------------------------------------------
-
-void Application::Run()
-{
-  while (ShouldKeepRunning()) {
-    ProcessFrame();
-  }
-
-  Cleanup();
 }
 
 //-----------------------------------------------------------------------------
@@ -118,6 +116,15 @@ void Application::Cleanup()
 {
   uiContext.Cleanup();
   windowContext.Cleanup();
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::DefineWindowProperties(
+  const WindowProperties& _windowProperties
+)
+{
+  this->windowProperties = _windowProperties;
 }
 
 //-----------------------------------------------------------------------------

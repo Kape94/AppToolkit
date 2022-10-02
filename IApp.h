@@ -15,11 +15,11 @@ class IApp {
   public:
     virtual ~IApp() = default;
 
-    virtual void Initialize(
-      const WindowProperties& windowProperties = WindowProperties()
-    ) = 0;
-
     virtual void Run() = 0;
+
+    virtual void DefineWindowProperties(
+      const WindowProperties& windowProperties
+    ) = 0;
 
     virtual void SetUiPresenter(IuiPresenter* uiPresenter) = 0;
     virtual void SetAppInitializer(IAppInitializer* _appInitializer) = 0;

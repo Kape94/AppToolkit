@@ -22,11 +22,11 @@ class Application :
   private:
 
     // -----------------------IApp-----------------------------------
-    void Initialize(
-      const WindowProperties& windowProperties = WindowProperties()
-    ) override;
-
     void Run() override;
+
+    void DefineWindowProperties(
+      const WindowProperties& _windowProperties
+    ) override;
 
     void SetUiPresenter(IuiPresenter* uiPresenter) override;
     void SetAppInitializer(IAppInitializer* _appInitializer) override;
@@ -50,9 +50,8 @@ class Application :
     void SetMousePos(const glm::vec2& pos) override;
     // -----------------------IAppUtils------------------------------
 
-    void InitializeContext(
-      const WindowProperties& windowProperties
-    );
+    void Initialize();
+    void InitializeContext();
 
     void InitializeApp();
     bool ShouldKeepRunning() const;
@@ -68,6 +67,8 @@ class Application :
     UiContext uiContext;
 
     InputStatus inputStatus;
+
+    WindowProperties windowProperties;
 
     IAppInitializer* appInitializer = nullptr;
     IAppRenderer* appRenderer = nullptr;
