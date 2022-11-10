@@ -114,6 +114,10 @@ void Application::EndFrame()
 
 void Application::Cleanup()
 {
+  if (appCleanup != nullptr) {
+    appCleanup->Cleanup();
+  }
+
   uiContext.Cleanup();
   windowContext.Cleanup();
 }
@@ -155,6 +159,15 @@ void Application::SetAppRenderer(IAppRenderer* _appRenderer)
 void Application::SetAppUpdater(IAppUpdater* _appUpdater)
 {
   appUpdater = _appUpdater;
+}
+
+//-----------------------------------------------------------------------------
+
+void Application::SetAppCleanup(
+  IAppCleanup* _appCleanup
+)
+{
+  appCleanup = _appCleanup;
 }
 
 //-----------------------------------------------------------------------------

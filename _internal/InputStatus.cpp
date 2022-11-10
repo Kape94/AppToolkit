@@ -19,7 +19,7 @@ bool InputStatus::IsPressed(const Key key)
 bool InputStatus::IsPressed(const MouseButton mouseButton)
 {
   const bool previousIsPressed = previousMouseButtonState[mouseButton];
-  const bool currentIsPressed = previousMouseButtonState[mouseButton];
+  const bool currentIsPressed = currentMouseButtonState[mouseButton];
 
   return !previousIsPressed && currentIsPressed;
 }

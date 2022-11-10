@@ -32,6 +32,7 @@ class Application :
     void SetAppInitializer(IAppInitializer* _appInitializer) override;
     void SetAppRenderer(IAppRenderer* _appRenderer) override;
     void SetAppUpdater(IAppUpdater* _appUpdater) override;
+    void SetAppCleanup(IAppCleanup* _appCleanup) override;
     // -----------------------IApp-----------------------------------
 
     // -----------------------IAppUtils------------------------------
@@ -73,6 +74,7 @@ class Application :
     IAppInitializer* appInitializer = nullptr;
     IAppRenderer* appRenderer = nullptr;
     IAppUpdater* appUpdater = nullptr;
+    IAppCleanup* appCleanup = nullptr;
 
     bool isRunning = true;
 };
