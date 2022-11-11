@@ -22,6 +22,27 @@ class IApp {
       const WindowProperties& windowProperties
     ) = 0;
 
+    template <class AppImpl>
+    void SetImpl(AppImpl* impl) {
+      if (auto uiPresenter = dynamic_cast<IuiPresenter*>(impl)) {
+        SetUiPresenter(uiPresenter);
+      }
+      if (auto initializer = dynamic_cast<IAppInitializer*>(impl)) {
+        SetAppInitializer(initializer);
+      }
+      if (auto renderer = dynamic_cast<IAppRenderer*>(impl)) {
+        SetAppRenderer(renderer);
+      }
+      if (auto updater = dynamic_cast<IAppUpdater*>(impl)) {
+        SetAppUpdater(updater);
+      }
+      if (auto cleanup = dynamic_cast<IAppCleanup*>(impl)) {
+        SetAppCleanup(cleanup);
+      }
+    }
+
+  private:
+
     virtual void SetUiPresenter(IuiPresenter* uiPresenter) = 0;
     virtual void SetAppInitializer(IAppInitializer* _appInitializer) = 0;
     virtual void SetAppRenderer(IAppRenderer* _appRenderer) = 0;
