@@ -61,9 +61,9 @@ void Application::ProcessFrame()
 {
   BeginFrame();
 
-  PresentUI();
   Update();
   Render();
+  PresentUI();
 
   EndFrame();
 }
