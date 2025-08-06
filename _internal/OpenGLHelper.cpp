@@ -1,6 +1,6 @@
 #include "_internal/OpenGLHelper.h"
 
-#include <gl/glew.h>
+#include <GL/glew.h>
 
 //-----------------------------------------------------------------------------
 

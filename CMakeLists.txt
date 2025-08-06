@@ -9,9 +9,15 @@ find_package(imgui CONFIG REQUIRED)
 file(GLOB SRC_FILES *.cpp _internal/*.cpp)
 add_library(${PROJECT_NAME} ${SRC_FILES})
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(${PROJECT_NAME} 
+    PRIVATE 
+        ${CMAKE_CURRENT_SOURCE_DIR}
+)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC GLEW::GLEW)
-target_link_libraries(${PROJECT_NAME} PUBLIC glfw)
-target_link_libraries(${PROJECT_NAME} PUBLIC glm::glm)
-target_link_libraries(${PROJECT_NAME} PUBLIC imgui::imgui)
+target_link_libraries(${PROJECT_NAME} 
+    PUBLIC 
+        GLEW::GLEW
+        glfw
+        glm::glm
+        imgui::imgui
+)

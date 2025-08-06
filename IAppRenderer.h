@@ -3,7 +3,7 @@
 
 #include "AppToolkitDefs.h"
 
-#include <gl/glew.h>
+#include <GL/glew.h>
 
 _BEGIN_APP_TOOLKIT_NAMESPACE
 
