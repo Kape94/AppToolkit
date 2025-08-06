@@ -25,6 +25,7 @@ class IAppUtils {
 
     virtual glm::vec2 GetMousePos() const = 0;
     virtual void SetMousePos(const glm::vec2& pos) = 0;
+    virtual glm::vec2 GetMouseMotion() const = 0;
 };
 
 _END_APP_TOOLKIT_NAMESPACE

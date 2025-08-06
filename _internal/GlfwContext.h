@@ -30,6 +30,7 @@ class GlfwContext {
 
     glm::vec2 GetCursorPos() const;
     void SetCursorPos(const glm::vec2& pos);
+    glm::vec2 GetMouseMotion() const;
 
   private:
 

@@ -6,6 +6,10 @@ _USING_APP_TOOLKIT_NAMESPACE
 
 //-----------------------------------------------------------------------------
 
+static glm::vec2 lastCursorPos = { 0.0f, 0.0f };
+
+//-----------------------------------------------------------------------------
+
 void GlfwContext::Init(
   const WindowProperties& windowProperties
 )
@@ -37,6 +41,8 @@ bool GlfwContext::ShouldClose() const
 void GlfwContext::PollEvents()
 {
   glfwPollEvents();
+
+  lastCursorPos = GetCursorPos();
 }
 
 //-----------------------------------------------------------------------------
@@ -75,6 +81,14 @@ glm::vec2 GlfwContext::GetCursorPos() const
 void GlfwContext::SetCursorPos(const glm::vec2& pos)
 {
   glfwSetCursorPos(window, pos.x, pos.y);
+}
+
+//-----------------------------------------------------------------------------
+
+glm::vec2 GlfwContext::GetMouseMotion() const
+{
+  const glm::vec2 currentPos = GetCursorPos();
+  return currentPos - lastCursorPos;
 }
 
 //-----------------------------------------------------------------------------

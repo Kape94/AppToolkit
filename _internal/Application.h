@@ -49,6 +49,7 @@ class Application :
 
     glm::vec2 GetMousePos() const override;
     void SetMousePos(const glm::vec2& pos) override;
+    glm::vec2 GetMouseMotion() const override;
     // -----------------------IAppUtils------------------------------
 
     void Initialize();

@@ -236,3 +236,10 @@ void Application::SetMousePos(const glm::vec2& pos)
 }
 
 //-----------------------------------------------------------------------------
+
+glm::vec2 Application::GetMouseMotion() const
+{
+  return windowContext.GetMouseMotion();
+}
+
+//-----------------------------------------------------------------------------
